@@ -1,0 +1,24 @@
+[common]
+# 监听的地址
+addr = "0.0.0.0"
+# 监听的端口
+port = 7000
+# 授权令牌
+token = "12345678"
+# 用于UDP代理的配置
+[udp]
+port = 7001
+# 用于虚拟vhost的配置
+[vhost]
+http_port = 80
+https_port = 443
+# 仪表板配置
+[dashboard]
+bind_addr = "0.0.0.0"
+bind_port = 7500
+user = "admin"
+password = "admin"
+# Log配置
+[log]
+file = "./frps.log"
+level = "info"
