@@ -1,4 +1,3 @@
-# frp-client
-用rust开发的frp client端
-
+# frp
+用rust开发的frp
 待开发... 占位置.
