@@ -1,7 +1,9 @@
 use std::env;
+
 mod args;
 
 fn main() {
-    let (command, matched) = args::init().unwrap();
-    dbg!(command, matched);
+    if let Some((command, matches)) = args::init() {
+        dbg!(command, matches);
+    };
 }
