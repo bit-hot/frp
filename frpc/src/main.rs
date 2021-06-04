@@ -1,3 +1,7 @@
+use std::env;
+mod args;
+
 fn main() {
-    println!("Hello, world!");
+    let (command, matched) = args::init().unwrap();
+    dbg!(command, matched);
 }
