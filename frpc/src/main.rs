@@ -1,5 +1,3 @@
-use std::env;
-
 mod args;
 mod conf;
 

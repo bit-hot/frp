@@ -1,16 +1,21 @@
 use serde_derive::Deserialize;
+use std::net::IpAddr;
 
 #[derive(Deserialize, Debug)]
 pub struct Common {
-    server_addr: String,
-    server_port: u16,
-    token: String,
-    user: String,
+    pub server_addr: IpAddr,
+    pub server_port: u16,
+    pub token: String,
+    pub user: String,
+    pub admin_addr: IpAddr,
+    pub admin_port: u16,
+    pub admin_user: String,
+    pub admin_pwd: String,
 }
 
 #[derive(Deserialize, Debug)]
 pub struct Config {
-    common: Common
+    pub common: Common,
 }
 
 pub fn load_base() -> Config {

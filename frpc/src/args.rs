@@ -1,5 +1,5 @@
-use std::env;
 use getopts::{Options, Matches};
+use std::env;
 
 #[derive(Debug)]
 pub enum Command {
@@ -40,7 +40,7 @@ pub fn init() -> Option<(Command, Matches)> {
     if args.len() > 2 {
         let matches = match opts.parse(&args[2..]) {
             Ok(m) => m,
-            Err(e) => panic!(e.to_string())
+            Err(e) => panic!("{}", e)
         };
         if matches.opt_present("h") {
             help(&program, &opts);

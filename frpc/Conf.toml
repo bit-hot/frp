@@ -5,7 +5,14 @@ server_addr = "0.0.0.0"
 server_port = 7000
 # 授权令牌
 token = "12345678"
+# 你的代理名称
 user = "bithot"
+# 设置管理地址用于通过http api控制frpc的动作，例如reload
+admin_addr = "127.0.0.1"
+admin_port = 7400
+admin_user = "admin"
+admin_pwd = "admin"
+
 [proxy]
 [proxy.ssh]
 type = "tcp"
