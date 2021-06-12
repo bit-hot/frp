@@ -1,6 +1,5 @@
 use frpc::{args, conf, service};
 use frpc::service::service_trait::Conn;
-
 fn main() {
     let cli_args = args::init();
 

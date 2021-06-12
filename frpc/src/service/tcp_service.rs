@@ -23,9 +23,10 @@ impl<'a> Conn for TcpService<'a> {
         for stream in listener.incoming() {
             match stream {
                 Ok(mut raw) => {
-                    let mut buf:Vec<u8> = vec![0;1024];
+                    let mut buf = vec![0;1024];
                     raw.read(&mut buf);
-                    print!("{}", String::from_utf8_lossy(&buf));
+                    let request = String::from_utf8_lossy(&buf);
+                    print!("{}", request);
                 },
                 Err(e) => panic!("{}", e),
             }

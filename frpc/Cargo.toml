@@ -9,8 +9,17 @@ edition = "2018"
 [dependencies]
 getopts = "0.2"
 toml = "0.5"
-serde_derive = "1.0"
 serde = "1.0"
+serde_json = "1.0"
+serde_derive = "1.0"
+bincode = "1"
+reqwest = "0.11"
+futures = "0.3"
+yamux = "0.9"
+bytes = "1"
+tokio = { version = "1", features = ["full"] }
+tokio-util = { version = "0.6", features = ["codec", "compat"] }
+frp-msg = { path = "../frp-msg" }
 
 [lib]
 name = "frpc"
