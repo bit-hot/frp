@@ -11,6 +11,8 @@ use tokio_util::compat::{Compat, TokioAsyncReadCompatExt};
 use std::task::{Context, Poll, Waker};
 use bytes::{BytesMut, BufMut};
 use serde::__private::fmt::Write;
+use frp_msg::msg::login::Login;
+use frp_msg::msg::MsgBase;
 
 
 pub mod tcp_service;
@@ -26,7 +28,7 @@ pub fn run(command: &args::Command, sub_args: &Matches, config: &conf::base::Con
 }
 
 async fn login() -> Result<(), Box<dyn Error>> {
-    let req_body = frp_msg::msg::Login {
+    let login_msg = frp_msg::msg::login::Login {
         version: "0.18.0".to_string(),
         hostname: "cary".to_string(),
         os: env::consts::OS.to_string(),
@@ -39,7 +41,6 @@ async fn login() -> Result<(), Box<dyn Error>> {
         pool_count: 0,
     };
 
-
     let mut stream = TcpStream::connect("10.211.55.6:9090").await.expect("connect").compat();
     let c = yamux::Config::default();
     let conn = yamux::Connection::new(stream, c, yamux::Mode::Client);
@@ -49,10 +50,10 @@ async fn login() -> Result<(), Box<dyn Error>> {
     let (mut r, mut w) = AsyncReadExt::split(st);
 
     let mut msg_buf = BytesMut::new();
-    let type_byte = frp_msg::msg::get_type_byte(frp_msg::msg::MsgType::TypeLogin(&req_body));
-    let resq_json = serde_json::to_string(&req_body)?;
+    let type_byte = login_msg.get_head_byte();
+    let resq_json = login_msg.get_body();
 
-    msg_buf.put_u8(type_byte.unwrap());
+    msg_buf.put_u8(type_byte);
     msg_buf.put_i64(resq_json.len() as i64);
     msg_buf.put_slice((&resq_json).as_ref());
 
