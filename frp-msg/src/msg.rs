@@ -1,7 +1,5 @@
-use crate::msg::login::{Login, LoginResp};
-pub mod login;
-
-pub trait MsgBase {
-    fn get_body(&self) -> String;
-    fn get_head_byte(&self) -> u8;
-}
+use crate::msg::auth::{Login, LoginResp};
+pub mod auth;
+pub mod service;
+pub mod conn;
+pub mod nat_hole;

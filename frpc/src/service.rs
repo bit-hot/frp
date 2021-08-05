@@ -11,8 +11,8 @@ use tokio_util::compat::{Compat, TokioAsyncReadCompatExt};
 use std::task::{Context, Poll, Waker};
 use bytes::{BytesMut, BufMut};
 use serde::__private::fmt::Write;
-use frp_msg::msg::login::Login;
-use frp_msg::msg::MsgBase;
+use frp_msg::msg::auth::Login;
+use frp_core::msg::MsgBase;
 
 
 pub mod tcp_service;
@@ -28,7 +28,7 @@ pub fn run(command: &args::Command, sub_args: &Matches, config: &conf::base::Con
 }
 
 async fn login() -> Result<(), Box<dyn Error>> {
-    let login_msg = frp_msg::msg::login::Login {
+    let login_msg = frp_msg::msg::auth::Login {
         version: "0.18.0".to_string(),
         hostname: "cary".to_string(),
         os: env::consts::OS.to_string(),

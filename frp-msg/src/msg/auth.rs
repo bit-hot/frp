@@ -1,8 +1,8 @@
 use std::collections::HashMap;
 use serde_derive::{Deserialize, Serialize};
-use crate::msg::{MsgBase};
+use frp_msg_derive::MsgBaseTrait;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, MsgBaseTrait)]
 pub struct Login {
     pub version: String,
     pub hostname: String,
@@ -16,20 +16,10 @@ pub struct Login {
     pub pool_count: isize,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, MsgBaseTrait)]
 pub struct LoginResp {
     version: String,
     run_id: String,
     server_udp_port: isize,
     error: String,
-}
-
-impl MsgBase for Login {
-    fn get_body(&self) -> String {
-        serde_json::to_string(&self).unwrap()
-    }
-
-    fn get_head_byte(&self) -> u8 {
-        crate::head::LOGIN as u8
-    }
 }
