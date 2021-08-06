@@ -3,6 +3,6 @@ members = [
     "frpc",
     "frps",
     "frp-msg",
-    "frp-msg-derive",
-    "frp-core"
+    "frp-derive",
+    "frp-trait",
 ]

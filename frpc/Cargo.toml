@@ -19,8 +19,8 @@ yamux = "0.9"
 bytes = "1"
 tokio = { version = "1", features = ["full"] }
 tokio-util = { version = "0.6", features = ["codec", "compat"] }
+frp-trait = { path = "../frp-trait" }
 frp-msg = { path = "../frp-msg" }
-frp-core = { path = "../frp-core" }
 
 [lib]
 name = "frpc"

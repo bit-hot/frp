@@ -17,3 +17,10 @@ pub const NAT_HOLE_CLIENT: char = 'n';
 pub const NAT_HOLE_RESP: char = 'm';
 pub const NAT_HOLE_CLIENT_DETECT_OK: char = 'd';
 pub const NAT_HOLE_SID: char = '5';
+
+pub use frp_derive::*;
+
+pub trait MsgBase {
+    fn get_body(&self) -> String;
+    fn get_head_byte(&self) -> u8;
+}
