@@ -11,7 +11,7 @@ use tokio_util::compat::{Compat, TokioAsyncReadCompatExt};
 use std::task::{Context, Poll, Waker};
 use bytes::{BytesMut, BufMut};
 use serde::__private::fmt::Write;
-use frp_trait::msg::MsgBase;
+use frp_trait::msg::FrpMsg;
 
 
 pub mod tcp_service;

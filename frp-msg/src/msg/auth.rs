@@ -1,8 +1,8 @@
 use std::collections::HashMap;
 use serde_derive::{Deserialize, Serialize};
-use frp_trait::msg::MsgBase;
+use frp_trait::msg::FrpMsg;
 
-#[derive(Debug, Serialize, Deserialize, MsgBase)]
+#[derive(Debug, Serialize, Deserialize, FrpMsg)]
 pub struct Login {
     pub version: String,
     pub hostname: String,
@@ -16,7 +16,7 @@ pub struct Login {
     pub pool_count: isize,
 }
 
-#[derive(Debug, Serialize, Deserialize, MsgBase)]
+#[derive(Debug, Serialize, Deserialize, FrpMsg)]
 pub struct LoginResp {
     pub version: String,
     pub run_id: String,

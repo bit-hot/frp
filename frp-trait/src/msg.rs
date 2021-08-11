@@ -20,7 +20,7 @@ pub const NAT_HOLE_SID: char = '5';
 
 pub use frp_derive::*;
 
-pub trait MsgBase {
+pub trait FrpMsg {
     fn get_body(&self) -> String;
     fn get_head_byte(&self) -> u8;
 }

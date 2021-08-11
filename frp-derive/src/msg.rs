@@ -10,7 +10,7 @@ pub fn impl_msg_struct(derive_input: DeriveInput) -> proc_macro::TokenStream {
     let upper_const_struct = Ident::new(get_upper_struct(struct_name.to_string()).as_str(), Span::call_site());
 
     let expanded = quote! {
-        impl #impl_generics frp_trait::msg::MsgBase for #struct_name #ty_generics #where_clause {
+        impl #impl_generics frp_trait::msg::FrpMsg for #struct_name #ty_generics #where_clause {
             fn get_body(&self) -> String {
                 serde_json::to_string(&self).unwrap()
             }
