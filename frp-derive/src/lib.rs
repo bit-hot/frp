@@ -1,6 +1,4 @@
 use syn::{parse_macro_input, DeriveInput};
-use proc_macro2::TokenStream;
-
 mod msg;
 
 #[proc_macro_derive(FrpMsg)]

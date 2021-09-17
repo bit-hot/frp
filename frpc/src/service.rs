@@ -1,7 +1,7 @@
-use crate::{args, conf};
+use crate::{args};
 use std::env;
 use getopts::Matches;
-use crate::service::service_trait::Conn;
+// use crate::service::service_trait::Conn;
 use tokio::{net::{TcpStream, TcpListener}, runtime::Runtime, task};
 use std::error::Error;
 use futures::{future, prelude::*};
@@ -14,12 +14,12 @@ use serde::__private::fmt::Write;
 use frp_trait::msg::FrpMsg;
 
 
-pub mod tcp_service;
-pub mod udp_service;
-pub mod service_trait;
+// pub mod tcp_service;
+// pub mod udp_service;
+// pub mod service_trait;
 
 
-pub fn run(command: &args::Command, sub_args: &Matches, config: &conf::base::Config) {
+pub fn run(command: &args::Command, sub_args: &Matches, config: &frp_config::client::Config) {
     dbg!(command);
     match command {
         args::Command::Start => start(sub_args, config),
@@ -64,7 +64,7 @@ async fn login() -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
-pub fn start(sub_args: &Matches, config: &conf::base::Config) {
+pub fn start(sub_args: &Matches, config: &frp_config::client::Config) {
     let rt = Runtime::new().unwrap();
     rt.block_on(login());
     // let tcp_service = tcp_service::TcpService::new(&config.common);

@@ -5,4 +5,5 @@ members = [
     "frp-msg",
     "frp-derive",
     "frp-trait",
+    "frp-config",
 ]

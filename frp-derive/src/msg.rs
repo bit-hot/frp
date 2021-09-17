@@ -1,4 +1,4 @@
-use syn::{DeriveInput, GenericParam, parse_quote, Generics};
+use syn::{DeriveInput};
 use quote::quote;
 use proc_macro2::{Ident, Span};
 

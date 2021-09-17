@@ -5,11 +5,11 @@ use std::io::Read;
 
 // Init tcp service struct
 pub struct TcpService<'a> {
-    config: &'a conf::base::Common,
+    config: &'a conf::parser::Common,
 }
 
 impl<'a> TcpService<'a> {
-    pub fn new(config: &'a conf::base::Common) -> Self {
+    pub fn new(config: &'a conf::parser::Common) -> Self {
         TcpService {
             config
         }
