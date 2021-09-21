@@ -34,31 +34,35 @@ pub struct Common {
     login_fail_exit: bool,
     protocol: String,
     tls_enable: bool,
-    tls_cert_file: String,
-    tls_key_file: String,
-    tls_trusted_ca_file: String,
-    tls_server_name: String,
-    dns_server: IpAddr,
-    start: String,
+    tls_cert_file: Option<String>,
+    tls_key_file: Option<String>,
+    tls_trusted_ca_file: Option<String>,
+    tls_server_name: Option<String>,
+    dns_server: Option<IpAddr>,
+    start: Option<String>,
     heartbeat_interval: u8,
     heartbeat_timeout: u8,
-    metas: Vec<String>,
+    metas: Option<Vec<String>>,
     udp_packet_size: u16,
-    include_conf_files: Vec<String>,
+    include_conf_files: Option<Vec<String>>,
 }
 
+#[derive(Debug, Deserialize, Serialize)]
 pub struct Config {
     common: Common,
 }
 
 
 impl Config {
-    pub fn new(cnf_file: &Path) {
+    pub fn new(cnf_file: &Path) -> Config {
         let def_str = include_str!("../frpc_full.ini");
         let mut def_cnf = config::Config::default();
         def_cnf
             .merge(config::File::from_str(def_str, config::FileFormat::Ini)).unwrap()
             .merge(config::File::from(cnf_file)).unwrap();
-        dbg!(def_cnf.get::<HashMap<String, String>>("common").unwrap());
+
+        Config {
+            common: def_cnf.get::<Common>("common").unwrap()
+        }
     }
 }
